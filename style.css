@@ -611,3 +611,35 @@ body {
         transform: translateY(-12px);
     }
 }
+
+.typing-wrapper {
+    display: inline-flex;
+    /* key fix */
+    align-items: center;
+    min-height: 32px;
+    /* stops jump on delete */
+}
+
+#typing {
+    font-size: 24px;
+    font-weight: 600;
+    color: #6ab0ff;
+
+    position: relative;
+    white-space: nowrap;
+}
+
+/* CARET INSIDE ELEMENT – not border */
+#typing::after {
+    content: "|";
+    margin-left: 4px;
+    animation: blink 1s infinite;
+    color: #6ab0ff;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
