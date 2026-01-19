@@ -124,3 +124,37 @@ form.addEventListener("submit", function (e) {
         }
     );
 });
+
+const words = [
+    "Full Stack Developer",
+    "AI Features & Applications",
+    "DevOps Deployment"
+];
+
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
+
+function typeEffect() {
+    const element = document.getElementById("typing");
+    const currentWord = words[wordIndex];
+
+    if (!deleting) {
+        element.innerHTML = currentWord.substring(0, charIndex++);
+        if (charIndex > currentWord.length) {
+            deleting = true;
+            setTimeout(typeEffect, 1000);
+            return;
+        }
+    } else {
+        element.innerHTML = currentWord.substring(0, charIndex--);
+        if (charIndex === 0) {
+            deleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+        }
+    }
+
+    setTimeout(typeEffect, deleting ? 40 : 80);
+}
+
+window.onload = typeEffect;
